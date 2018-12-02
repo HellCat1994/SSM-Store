@@ -1,4 +1,5 @@
 package com.hellcat.o2o.dao;
+import org.apache.ibatis.annotations.Param;
 
 import com.hellcat.o2o.entity.Shop;
 
@@ -9,4 +10,11 @@ public interface ShopDao {
      * @return
      */
     int insertShop(Shop shop);
+
+    /**
+     * 更新店铺信息
+     * @param shop
+     * @return
+     */
+    int updateShop(Shop shop);
 }

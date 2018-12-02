@@ -1,20 +1,23 @@
-package com.hellcat.o2o.dao;
-
+package com.hellcat.o2o.service;
 import base.config.BaseTest;
 import com.hellcat.o2o.entity.Area;
 import com.hellcat.o2o.entity.PersonInfo;
 import com.hellcat.o2o.entity.Shop;
 import com.hellcat.o2o.entity.ShopCategory;
+import com.hellcat.o2o.enums.ShopStateEnum;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.File;
 import java.util.Date;
 
-public class ShopDaoTest extends BaseTest {
+public class ShopServiceTest extends BaseTest {
     @Autowired
-    private ShopDao shopDao;
+    private ShopService shopService;
+
     @Test
-    public void testInsertShop(){
+    public void testAddShop(){
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
         Area area = new Area();
@@ -26,25 +29,18 @@ public class ShopDaoTest extends BaseTest {
         shop.setOwner(owner);
         shop.setArea(area);
         shop.setShopCategory(shopCategory);
-        shop.setShopName("测试的店铺");
-        shop.setShopDesc("test");
-        shop.setShopAddr("test");
+        shop.setShopName("测试的店铺1");
+        shop.setShopDesc("test1");
+        shop.setShopAddr("test1");
         shop.setPhone("test");
-        shop.setShopImg("test");
         shop.setCreateTime(new Date());
-        shop.setEnableStatus(1);
+        shop.setEnableStatus(ShopStateEnum.CHECK.getState());
         shop.setAdvice("审核中");
-        int effectedNum = shopDao.insertShop(shop);
-        System.out.println(effectedNum);
-    }
 
-    @Test
-    public void testUpdateShop(){
-        Shop shop = new Shop();
-        shop.setShopId(1L);
-        shop.setLastEditTime(new Date());
-        shop.setShopDesc("新增加的描述");
-        shop.setShopAddr("新增加的地址");
-        shopDao.updateShop(shop);
+        File shopImg = new File("12");
+        //shopService.addShop(shop,shopImg);
+
+
+
     }
 }
